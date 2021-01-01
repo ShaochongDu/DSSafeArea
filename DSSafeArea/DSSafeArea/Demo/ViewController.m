@@ -66,6 +66,40 @@ static CGFloat kBottomViewHeight = 56.;
     return _tableView;
 }
 
+#pragma mark - <#comment#> 
+
+- (IBAction)showHiddenBottom:(UIButton *)sender {
+    NSString *title = [sender titleForState:UIControlStateNormal];
+    if ([title isEqualToString:@"隐藏"]) {
+        [sender setTitle:@"显示" forState:UIControlStateNormal];
+
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            //  必须使用固定值
+            make.top.mas_equalTo(self.view.height);
+        }];
+        [self layoutSelfViews];
+    } else {
+        [sender setTitle:@"隐藏" forState:UIControlStateNormal];
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            //  必须使用固定值
+            make.top.mas_equalTo(self.tableView.bottom);
+        }];
+        [self layoutSelfViews];
+    }
+}
+
+- (void)layoutSelfViews {
+    // tell constraints they need updating
+    [self.view setNeedsUpdateConstraints];
+    
+    // update constraints now so we can animate the change
+    [self.view updateConstraintsIfNeeded];
+
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
 #pragma mark - <#comment#>
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

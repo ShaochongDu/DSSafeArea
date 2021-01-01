@@ -21,6 +21,7 @@
 		E8069FA3259ECB250001857B /* DSSafeAreaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8069FA2259ECB250001857B /* DSSafeAreaUITests.m */; };
 		E8069FB9259ECF1F0001857B /* BaseBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8069FB8259ECF1F0001857B /* BaseBottomView.m */; };
 		E8069FC6259ED0E60001857B /* DSBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8069FC5259ED0E60001857B /* DSBottomView.m */; };
+		E8069FCE259F0FB80001857B /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E8069FCC259F0FB80001857B /* UIView+Addition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		E8069FBD259ECF9E0001857B /* DSSafeArea.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSSafeArea.pch; sourceTree = "<group>"; };
 		E8069FC4259ED0E60001857B /* DSBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSBottomView.h; sourceTree = "<group>"; };
 		E8069FC5259ED0E60001857B /* DSBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSBottomView.m; sourceTree = "<group>"; };
+		E8069FCC259F0FB80001857B /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
+		E8069FCD259F0FB80001857B /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
 		F110E039C946B59B44E33B10 /* Pods-DSSafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSSafeArea.release.xcconfig"; path = "Target Support Files/Pods-DSSafeArea/Pods-DSSafeArea.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,16 +144,12 @@
 		E8069F7A259ECB210001857B /* DSSafeArea */ = {
 			isa = PBXGroup;
 			children = (
+				E8069FD3259F0FCF0001857B /* Demo */,
+				E8069FD2259F0FC20001857B /* Other */,
 				E8069F7B259ECB210001857B /* AppDelegate.h */,
 				E8069F7C259ECB210001857B /* AppDelegate.m */,
 				E8069F7E259ECB210001857B /* SceneDelegate.h */,
 				E8069F7F259ECB210001857B /* SceneDelegate.m */,
-				E8069F81259ECB210001857B /* ViewController.h */,
-				E8069F82259ECB210001857B /* ViewController.m */,
-				E8069FB7259ECF1F0001857B /* BaseBottomView.h */,
-				E8069FB8259ECF1F0001857B /* BaseBottomView.m */,
-				E8069FC4259ED0E60001857B /* DSBottomView.h */,
-				E8069FC5259ED0E60001857B /* DSBottomView.m */,
 				E8069F84259ECB210001857B /* Main.storyboard */,
 				E8069F87259ECB250001857B /* Assets.xcassets */,
 				E8069F89259ECB250001857B /* LaunchScreen.storyboard */,
@@ -177,6 +176,28 @@
 				E8069FA4259ECB250001857B /* Info.plist */,
 			);
 			path = DSSafeAreaUITests;
+			sourceTree = "<group>";
+		};
+		E8069FD2259F0FC20001857B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				E8069FCD259F0FB80001857B /* UIView+Addition.h */,
+				E8069FCC259F0FB80001857B /* UIView+Addition.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		E8069FD3259F0FCF0001857B /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				E8069F81259ECB210001857B /* ViewController.h */,
+				E8069F82259ECB210001857B /* ViewController.m */,
+				E8069FB7259ECF1F0001857B /* BaseBottomView.h */,
+				E8069FB8259ECF1F0001857B /* BaseBottomView.m */,
+				E8069FC4259ED0E60001857B /* DSBottomView.h */,
+				E8069FC5259ED0E60001857B /* DSBottomView.m */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		F7B4E1A3394DC486B50B4A34 /* Frameworks */ = {
@@ -427,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8069FC6259ED0E60001857B /* DSBottomView.m in Sources */,
+				E8069FCE259F0FB80001857B /* UIView+Addition.m in Sources */,
 				E8069F83259ECB210001857B /* ViewController.m in Sources */,
 				E8069F7D259ECB210001857B /* AppDelegate.m in Sources */,
 				E8069FB9259ECF1F0001857B /* BaseBottomView.m in Sources */,

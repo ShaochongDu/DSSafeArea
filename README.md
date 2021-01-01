@@ -1,4 +1,4 @@
-# DSSafeArea
+# 底部操作视图安全域适配
 底部安全域适配，结合Masonry进行配置跟简单快捷
 
 场景：
@@ -15,3 +15,6 @@
 3. 将自定义的底部视图bottomview继承至基类，将点赞、收藏按钮添加至基类contentview中，并设置约束（基于contentview）
 4. 约束bottomview的左右下为当前view（不区分是否x系列屏幕），上为tableview底部
 5. 设置基类中contentview的高度即可
+
+![safeArea.gif](https://upload-images.jianshu.io/upload_images/1186277-b0f82eceb830096a.gif?imageMogr2/auto-orient/strip)
+
