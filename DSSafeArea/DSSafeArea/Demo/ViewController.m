@@ -66,25 +66,52 @@ static CGFloat kBottomViewHeight = 56.;
     return _tableView;
 }
 
-#pragma mark - <#comment#> 
+#pragma mark - <#comment#>
 
 - (IBAction)showHiddenBottom:(UIButton *)sender {
     NSString *title = [sender titleForState:UIControlStateNormal];
+    //  显示隐藏更改约束有两种方式
+    //  1. 使用updateConstraints方式，仅更改bottomview的top值
+    //  2. 使用remakeConstraints方式，全部更改约束，此方式可以适配横竖屏，且无需计算高度
     if ([title isEqualToString:@"隐藏"]) {
         [sender setTitle:@"显示" forState:UIControlStateNormal];
 
-        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-            //  必须使用固定值
-            make.top.mas_equalTo(self.view.height);
+        //  隐藏bottomview，使用remake方式适配横竖屏
+        [self.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            //  1.固定值方式 仅更改top值
+//            make.top.mas_equalTo(self.view.height);
+            //  2. 重新设置约束
+            make.left.right.bottom.mas_equalTo(self.view);
+            make.top.mas_equalTo(self.view.mas_bottom);
         }];
         [self layoutSelfViews];
+        
+        //  更新tablview
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(self.view);
+        }];
     } else {
         [sender setTitle:@"隐藏" forState:UIControlStateNormal];
-        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-            //  必须使用固定值
-            make.top.mas_equalTo(self.tableView.bottom);
+        
+        //  展示bottomview
+        [self.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            //  1.固定值方式 仅更改top值
+//            make.top.mas_equalTo(self.tableView.bottom);
+            //  2. 重新设置约束
+            make.left.right.bottom.mas_equalTo(self.view);
+            make.top.mas_equalTo(self.tableView.mas_bottom);
         }];
         [self layoutSelfViews];
+        
+        //  更新tablview
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.mas_equalTo(self.view);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-kBottomViewHeight);
+            } else {
+                make.bottom.mas_equalTo(-kBottomViewHeight);
+            }
+        }];
     }
 }
 
