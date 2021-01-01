@@ -1,0 +1,6 @@
+framework module Pods_DSSafeArea {
+  umbrella header "Pods-DSSafeArea-umbrella.h"
+
+  export *
+  module * { export * }
+}
