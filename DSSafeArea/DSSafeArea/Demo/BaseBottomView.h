@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 一定要设置，需要更新约束
 @property (nonatomic, assign) CGFloat contentViewHeight;
 
+/// 设置contentview左上及右上圆角
+/// 若要对整个底部控件设置圆角，可直接设置bottomview即可，无需设置此参数
+@property (nonatomic, assign) CGSize cornerRadii;
 
 @end
 

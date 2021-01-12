@@ -7,6 +7,13 @@
 
 #import "BaseBottomView.h"
 
+@interface BaseBottomView ()
+
+/// 遮罩视图，若视图做了圆角设置，则可设置为yes，防止非x系列手机底部包含圆角
+@property (nonatomic, strong) UIView *maskView;
+
+@end
+
 @implementation BaseBottomView
 
 -(instancetype)initWithFrame:(CGRect)frame {
@@ -43,6 +50,20 @@
     CGFloat green = arc4random()%255/255.0;
     CGFloat blue = arc4random()%255/255.0;
     return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    if (self.cornerRadii.width <= 0 || self.cornerRadii.height <= 0) {
+        return;
+    }
+    self.backgroundColor = UIColor.clearColor;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.contentView.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:self.cornerRadii];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.contentView.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.contentView.layer.mask = maskLayer;
 }
 
 /*
