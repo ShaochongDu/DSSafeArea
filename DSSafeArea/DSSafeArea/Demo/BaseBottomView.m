@@ -29,7 +29,6 @@
 
 - (void)setupBaseBottomViews {
     self.contentView = [UIView new];
-//    self.contentView.backgroundColor = [self randomColor];
     [self addSubview:self.contentView];
 }
 
@@ -55,15 +54,13 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (self.cornerRadii.width <= 0 || self.cornerRadii.height <= 0) {
-        return;
+    if (self.cornerRadii.width > 0 && self.cornerRadii.height > 0) {
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.contentView.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:self.cornerRadii];
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+        maskLayer.frame = self.contentView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        self.contentView.layer.mask = maskLayer;
     }
-    self.backgroundColor = UIColor.clearColor;
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.contentView.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:self.cornerRadii];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.contentView.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.contentView.layer.mask = maskLayer;
 }
 
 /*

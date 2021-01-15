@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 若要对整个底部控件设置圆角，可直接设置bottomview即可，无需设置此参数
 @property (nonatomic, assign) CGSize cornerRadii;
 
+/// 随机色
+- (UIColor *)randomColor;
+
 @end
 
 NS_ASSUME_NONNULL_END
