@@ -18,6 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 独立控制底部视图
 /// @param show 是否展示
+/// @param bottomView 底部视
+/// @param contentHeight 底部视图高度
+- (void)showBottomView:(BOOL)show
+            bottomView:(UIView *)bottomView
+         contentHeight:(CGFloat)contentHeight;
+
+/// 独立控制底部视图
+/// @param show 是否展示
 /// @param bottomView 底部视图
 /// @param contentHeight 底部视图高度
 /// @param animate 是否动画展示

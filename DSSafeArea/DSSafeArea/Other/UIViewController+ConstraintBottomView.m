@@ -13,6 +13,15 @@
 
 - (void)showBottomView:(BOOL)show
             bottomView:(UIView *)bottomView
+         contentHeight:(CGFloat)contentHeight {
+    [self showBottomView:show
+              bottomView:bottomView
+           contentHeight:contentHeight
+                 animate:NO];
+}
+
+- (void)showBottomView:(BOOL)show
+            bottomView:(UIView *)bottomView
          contentHeight:(CGFloat)contentHeight
                animate:(BOOL)animate {
     if (show) {
