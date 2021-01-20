@@ -16,5 +16,6 @@
 4. 约束bottomview的左右下为当前view（不区分是否x系列屏幕），上为tableview底部
 5. 设置基类中contentview的高度即可
 
-![safeArea.gif](https://upload-images.jianshu.io/upload_images/1186277-b701bd7491da5b5f.gif?imageMogr2/auto-orient/strip)
+
+![safeArea.gif](https://upload-images.jianshu.io/upload_images/1186277-50bbc1de87c96af0.gif?imageMogr2/auto-orient/strip)
 
