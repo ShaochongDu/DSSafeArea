@@ -29,14 +29,14 @@
     //  控件需要添加至 基类contentview
     self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.likeBtn addTarget:self action:@selector(likeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.likeBtn setTitleColor:UIColor.cyanColor forState:UIControlStateNormal];
+    [self.likeBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [self.likeBtn setTitle:@"点赞" forState:UIControlStateNormal];
     [self.likeBtn setBackgroundColor:[self randomColor]];
     [self.contentView addSubview:self.likeBtn];
     
     self.collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.collectionBtn addTarget:self action:@selector(collectionBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.collectionBtn setTitleColor:UIColor.magentaColor forState:UIControlStateNormal];
+    [self.collectionBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [self.collectionBtn setTitle:@"收藏" forState:UIControlStateNormal];
     [self.collectionBtn setBackgroundColor:[self randomColor]];
     [self.contentView addSubview:self.collectionBtn];
