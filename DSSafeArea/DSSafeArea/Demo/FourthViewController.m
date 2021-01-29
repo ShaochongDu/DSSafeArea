@@ -18,11 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor grayColor];
     
     [self showBottomView:YES
               bottomView:self.bottomView
            contentHeight:kBottomViewHeight
                  animate:NO];
+    self.bottomView.backgroundColor = UIColor.redColor;
     self.bottomView.contentViewHeight = kBottomViewHeight;
     self.bottomView.cornerRadii = CGSizeMake(5, 5);
 }

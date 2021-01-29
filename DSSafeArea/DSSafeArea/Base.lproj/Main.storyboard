@@ -82,6 +82,42 @@
             </objects>
             <point key="canvasLocation" x="2817" y="-3"/>
         </scene>
+        <!--未继承基类bottomview视图-->
+        <scene sceneID="3rS-lV-gdB">
+            <objects>
+                <viewController storyboardIdentifier="FifthViewController" hidesBottomBarWhenPushed="YES" id="LJm-yD-juM" customClass="FifthViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qx6-cJ-FFM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsS-cQ-0Bc">
+                                <rect key="frame" x="75" y="113" width="264" height="57"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="jlV-XG-D96"/>
+                                </constraints>
+                                <state key="normal" title="显示自定义bottomview">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="showHiddenBottomView:" destination="LJm-yD-juM" eventType="touchUpInside" id="snr-uX-nuw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="l3g-Cy-Pnr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wsS-cQ-0Bc" firstAttribute="top" secondItem="l3g-Cy-Pnr" secondAttribute="top" constant="25" id="9x3-C3-hEc"/>
+                            <constraint firstItem="wsS-cQ-0Bc" firstAttribute="leading" secondItem="l3g-Cy-Pnr" secondAttribute="leading" constant="75" id="ClO-Q1-2gh"/>
+                            <constraint firstItem="l3g-Cy-Pnr" firstAttribute="trailing" secondItem="wsS-cQ-0Bc" secondAttribute="trailing" constant="75" id="Ek9-IJ-osG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="未继承基类bottomview视图" id="CDm-fO-jn2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L2N-fQ-Awi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4513.04347826087" y="-3.3482142857142856"/>
+        </scene>
         <!--首页-->
         <scene sceneID="8Gc-yz-qVL">
             <objects>
@@ -239,8 +275,77 @@
             </objects>
             <point key="canvasLocation" x="1045" y="1416"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aE7-Km-vmb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kr2-dv-y3E" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f5s-dk-7l1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LJm-yD-juM" kind="relationship" relationship="rootViewController" id="fLn-Kw-QVa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XTf-KI-TOe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3602.898550724638" y="-3.3482142857142856"/>
+        </scene>
+        <!--未继承基类bottomview视图-->
+        <scene sceneID="WPX-nq-4Ia">
+            <objects>
+                <viewController storyboardIdentifier="SixthViewController" hidesBottomBarWhenPushed="YES" id="Qml-7a-YZx" customClass="SixthViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TQW-bH-lRH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="AFb-pw-bqV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="未继承基类bottomview视图" id="Pmk-et-KIB">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="0Zg-bn-inc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="od9-Sx-7E2">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <state key="normal" title="隐藏">
+                                    <color key="titleColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="showHiddenBottomView:" destination="Qml-7a-YZx" eventType="touchUpInside" id="p9t-YW-qhX"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mDq-Iv-CqQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3757.971014492754" y="691.74107142857144"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xr1-G1-SzX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HuT-2a-hxf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gh4-CA-MaM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Qml-7a-YZx" kind="relationship" relationship="rootViewController" id="bSE-FE-Fat"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="suv-Hz-oPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2847.826086956522" y="691.74107142857144"/>
+        </scene>
     </scenes>
     <resources>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

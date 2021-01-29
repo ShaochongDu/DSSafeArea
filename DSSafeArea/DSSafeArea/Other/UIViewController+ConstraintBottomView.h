@@ -29,6 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param bottomView 底部视图
 /// @param contentHeight 底部视图高度
 /// @param animate 是否动画展示
+/// @param complete 若animate=YES 则操作UI一定要在动画结束后的block中操作，防止动画延迟导致数据源不一致
+- (void)showBottomView:(BOOL)show
+            bottomView:(UIView *)bottomView
+         contentHeight:(CGFloat)contentHeight
+               animate:(BOOL)animate
+   animationsCompleted:complete;
+
 - (void)showBottomView:(BOOL)show
             bottomView:(UIView *)bottomView
          contentHeight:(CGFloat)contentHeight
@@ -52,6 +59,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param contentHeight 底部视图高度
 /// @param tableView 底部视图上方相对视图，一般为tablview，只要是UIView子类即可
 /// @param animate 是否动画
+/// @param complete 若animate=YES 则操作UI一定要在动画结束后的block中操作，防止动画延迟导致数据源不一致
+- (void)showBottomView:(BOOL)show
+            bottomView:(UIView *)bottomView
+         contentHeight:(CGFloat)contentHeight
+             tableView:(UIView *)tableView
+               animate:(BOOL)animate
+   animationsCompleted:(void(^)(void))complete;
+
 - (void)showBottomView:(BOOL)show
             bottomView:(UIView *)bottomView
          contentHeight:(CGFloat)contentHeight
@@ -65,6 +80,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param tableView 底部视图上方相对视图，一般为tablview，只要是UIView子类即可
 /// @param topView tableView上方视图
 /// @param animate 是否动画
+/// @param complete 若animate=YES 则操作UI一定要在动画结束后的block中操作，防止动画延迟导致数据源不一致
+- (void)showBottomView:(BOOL)show
+            bottomView:(UIView *)bottomView
+         contentHeight:(CGFloat)contentHeight
+             tableView:(UIView *)tableView
+               topView:(UIView *)topView
+               animate:(BOOL)animate
+   animationsCompleted:(void(^)(void))complete;
+
 - (void)showBottomView:(BOOL)show
             bottomView:(UIView *)bottomView
          contentHeight:(CGFloat)contentHeight

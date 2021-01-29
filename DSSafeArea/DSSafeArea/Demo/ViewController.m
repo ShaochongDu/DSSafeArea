@@ -7,6 +7,8 @@
 
 #import "ViewController.h"
 
+#import "FifthViewController.h"
+
 @interface ViewController ()
 
 @end
@@ -59,6 +61,12 @@
     }
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    FifthViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"FifthViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end

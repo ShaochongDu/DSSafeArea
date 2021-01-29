@@ -27,6 +27,8 @@
 		E87A3F2925B7CAEC00D91EFF /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3F2825B7CAEC00D91EFF /* SecondViewController.m */; };
 		E87A3F2F25B7D84F00D91EFF /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3F2E25B7D84F00D91EFF /* ThirdViewController.m */; };
 		E87A3F3D25B7E15200D91EFF /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3F3C25B7E15200D91EFF /* FourthViewController.m */; };
+		E87F373625BABEDB00A90F5C /* FifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F373525BABEDB00A90F5C /* FifthViewController.m */; };
+		E87F373C25BAC50900A90F5C /* SixthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F373B25BAC50900A90F5C /* SixthViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,10 @@
 		E87A3F2E25B7D84F00D91EFF /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		E87A3F3B25B7E15200D91EFF /* FourthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		E87A3F3C25B7E15200D91EFF /* FourthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
+		E87F373425BABEDB00A90F5C /* FifthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FifthViewController.h; sourceTree = "<group>"; };
+		E87F373525BABEDB00A90F5C /* FifthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FifthViewController.m; sourceTree = "<group>"; };
+		E87F373A25BAC50900A90F5C /* SixthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SixthViewController.h; sourceTree = "<group>"; };
+		E87F373B25BAC50900A90F5C /* SixthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SixthViewController.m; sourceTree = "<group>"; };
 		F110E039C946B59B44E33B10 /* Pods-DSSafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSSafeArea.release.xcconfig"; path = "Target Support Files/Pods-DSSafeArea/Pods-DSSafeArea.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,6 +223,10 @@
 				E87A3F2E25B7D84F00D91EFF /* ThirdViewController.m */,
 				E87A3F3B25B7E15200D91EFF /* FourthViewController.h */,
 				E87A3F3C25B7E15200D91EFF /* FourthViewController.m */,
+				E87F373425BABEDB00A90F5C /* FifthViewController.h */,
+				E87F373525BABEDB00A90F5C /* FifthViewController.m */,
+				E87F373A25BAC50900A90F5C /* SixthViewController.h */,
+				E87F373B25BAC50900A90F5C /* SixthViewController.m */,
 				E8069FB7259ECF1F0001857B /* BaseBottomView.h */,
 				E8069FB8259ECF1F0001857B /* BaseBottomView.m */,
 				E8069FC4259ED0E60001857B /* DSBottomView.h */,
@@ -472,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87F373625BABEDB00A90F5C /* FifthViewController.m in Sources */,
 				E87A3F3D25B7E15200D91EFF /* FourthViewController.m in Sources */,
 				E87A3F2925B7CAEC00D91EFF /* SecondViewController.m in Sources */,
 				E8069FC6259ED0E60001857B /* DSBottomView.m in Sources */,
@@ -484,6 +495,7 @@
 				E87A3F1725B7C49B00D91EFF /* UIViewController+ConstraintBottomView.m in Sources */,
 				E8069F8E259ECB250001857B /* main.m in Sources */,
 				E8069F80259ECB210001857B /* SceneDelegate.m in Sources */,
+				E87F373C25BAC50900A90F5C /* SixthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

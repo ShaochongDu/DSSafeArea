@@ -6,6 +6,7 @@
 //
 
 #import "SecondViewController.h"
+#import "SixthViewController.h"
 #import "UIViewController+ConstraintBottomView.h"
 
 @interface SecondViewController ()
@@ -58,6 +59,12 @@
                      topView:self.topView
                      animate:YES];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SixthViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"SixthViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
