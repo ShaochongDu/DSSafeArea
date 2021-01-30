@@ -47,15 +47,15 @@
     }
 }
 - (IBAction)datePickerAction:(UIButton *)sender {
-    NSArray *dataArray = @[@"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"老板",];
-//    CSPickerViewController *popVC = [CSPickerViewController new];
-//    popVC.selectDoneBlock = ^(NSInteger index) {
-//        NSString *stage = dataArray[index];
-//        NSLog(@"index--%ld----%@",index, stage);
-//        [sender setTitle:stage forState:UIControlStateNormal];
-//    };
-//    popVC.dataArray = dataArray;
-//    [popVC show];
+    NSArray *dataArray = @[@"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"领导",@"老板",@"CEO"];
+    CSPickerViewController *popVC = [CSPickerViewController new];
+    popVC.selectDoneBlock = ^(NSInteger index) {
+        NSString *stage = dataArray[index];
+        NSLog(@"index--%ld----%@",index, stage);
+        [sender setTitle:stage forState:UIControlStateNormal];
+    };
+    popVC.dataArray = dataArray;
+    [popVC show];
 //
 //    CSPickerSetting *setting = [CSPickerSetting new];
 //    setting.pickerViewHeight = 300;
@@ -66,10 +66,18 @@
 //    setting.titleColor = RandomColor;
 //    setting.rightTitle = @"done";
 //    setting.rightColor = RandomColor;
-//    [popVC showWithSetting:setting];
-    
+//    [popVC showWithSetting:setting];    
+}
+
+- (IBAction)popTableView:(UIButton *)sender {
+    NSArray *dataArray = @[@"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"领导",@"老板",@"CEO"];
     CSPopTableViewController *popVC = [CSPopTableViewController new];
     popVC.dataArray = dataArray;
+    popVC.selectIndexBlock = ^(NSIndexPath * indexPath) {
+        NSString *stage = dataArray[indexPath.row];
+        NSLog(@"index--%@----%@",indexPath, stage);
+        [sender setTitle:stage forState:UIControlStateNormal];
+    };
     [popVC show];
 //    popVC.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:popVC animated:YES];

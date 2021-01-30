@@ -20,14 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.    
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = UIColor.clearColor;
     [self setupViews];
 }
 
 - (void)setupViews {
     self.topView = [UIView new];
     self.topView.backgroundColor = [UIColor blackColor];
-    self.topView.alpha = 0.5;
+    self.topView.alpha = 0;
     [self.view addSubview:self.topView];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
@@ -70,10 +71,20 @@
 //        //  需等pickerView创建后赋值
 //        self.pickerView.pickerSetting = settting;
 //    }
-    NSLog(@"1---%@", window.rootViewController.view.safeAreaInsets);
-    NSLog(@"2---%@", self.view.safeAreaInsets);
     
-    [self showBottomView:YES animate:YES completed:nil];
+//    [self showBottomView:YES animate:YES completed:nil];
+    
+    [self showBottomView:YES
+              bottomView:self.bottomView
+              controller:window.rootViewController
+           contentHeight:300
+               tableView:self.topView
+                 animate:YES
+     animationsCompleted:nil];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.topView.alpha = 0.5;
+    }];
 }
 
 
@@ -103,6 +114,8 @@
      animationsCompleted:complete];
 }
 
+#pragma mark - UITableViewDelegate
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -119,8 +132,15 @@
         cell.textLabel.textColor = HexColor(0x353535, 1);
         cell.textLabel.font = PFRegularFont(16);
     }
-    cell.textLabel.text = @"北京学习中心";
+    cell.textLabel.text = self.dataArray[indexPath.row];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectIndexBlock) {
+        self.selectIndexBlock(indexPath);
+    }
+    [self dissmissSelf];
 }
 
 /*

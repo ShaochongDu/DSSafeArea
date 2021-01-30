@@ -55,7 +55,8 @@
             make.top.mas_equalTo(self.view.mas_bottom);
         }];
     }
-    [self layoutViews:animate animationsCompleted:complete];
+
+    [self layoutViewController:self animate:animate animationsCompleted:complete];
 }
 
 #pragma mark - 带有相对视图
@@ -85,6 +86,23 @@
                  topView:nil
                  animate:animate
      animationsCompleted:nil];
+}
+
+- (void)showBottomView:(BOOL)show
+            bottomView:(UIView *)bottomView
+            controller:(UIViewController *)viewController
+         contentHeight:(CGFloat)contentHeight
+             tableView:(UIView *)tableView
+               animate:(BOOL)animate
+   animationsCompleted:(void(^)(void))complete {
+    [self showBottomView:show
+              bottomView:bottomView
+              controller:viewController
+           contentHeight:contentHeight
+               tableView:tableView
+                 topView:nil
+                 animate:animate
+     animationsCompleted:complete];
 }
 
 - (void)showBottomView:(BOOL)show
@@ -124,27 +142,46 @@
                topView:(UIView *)topView
                animate:(BOOL)animate
    animationsCompleted:(void(^)(void))complete {
+    [self showBottomView:show
+              bottomView:bottomView
+              controller:nil
+           contentHeight:contentHeight
+               tableView:tableView
+                 topView:topView
+                 animate:animate
+     animationsCompleted:complete];
+}
+
+- (void)showBottomView:(BOOL)show
+            bottomView:(UIView *)bottomView
+            controller:(UIViewController *)viewController
+         contentHeight:(CGFloat)contentHeight
+             tableView:(UIView *)tableView
+               topView:(UIView *)topView
+               animate:(BOOL)animate
+   animationsCompleted:(void(^)(void))complete {
+    UIViewController *vc = viewController ?: self;
     if (show) {
         //  更新tablview
         [tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (topView) {
                 make.top.mas_equalTo(topView.mas_bottom);
             } else {
-                make.top.mas_equalTo(self.view);
+                make.top.mas_equalTo(vc.view);
             }
             if (@available(iOS 11.0, *)) {
-                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-contentHeight);
+                make.bottom.mas_equalTo(vc.view.mas_safeAreaLayoutGuideBottom).offset(-contentHeight);
             } else {
                 make.bottom.mas_equalTo(-contentHeight);
             }
-            make.left.right.mas_equalTo(self.view);
+            make.left.right.mas_equalTo(vc.view);
         }];
         
         //  展示bottomview
         if (bottomView.height > 0) {
             //  兼容未使用contenview的视图
             [bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.mas_equalTo(self.view);
+                make.left.right.mas_equalTo(vc.view);
                 make.top.mas_equalTo(tableView.mas_bottom);
                 make.height.mas_equalTo(bottomView.height);
             }];
@@ -153,7 +190,7 @@
                 //  1.固定值方式 仅更改top值
                 //            make.top.mas_equalTo(self.tableView.bottom);
                 //  2. 重新设置约束
-                make.left.right.bottom.mas_equalTo(self.view);
+                make.left.right.bottom.mas_equalTo(vc.view);
                 make.top.mas_equalTo(tableView.mas_bottom);
             }];
         }
@@ -163,17 +200,17 @@
             if (topView) {
                 make.top.mas_equalTo(topView.mas_bottom);
             } else {
-                make.top.mas_equalTo(self.view);
+                make.top.mas_equalTo(vc.view);
             }
-            make.left.right.bottom.mas_equalTo(self.view);
+            make.left.right.bottom.mas_equalTo(vc.view);
         }];
         
         //  隐藏bottomview，使用remake方式适配横竖屏
         if (bottomView.height > 0) {
             //  兼容未使用contenview的视图
             [bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.mas_equalTo(self.view);
-                make.top.mas_equalTo(self.view.mas_bottom);
+                make.left.right.mas_equalTo(vc.view);
+                make.top.mas_equalTo(vc.view.mas_bottom);
                 make.height.mas_equalTo(bottomView.height);
             }];
         } else {
@@ -181,32 +218,32 @@
                 //  1.固定值方式 仅更改top值
                 //            make.top.mas_equalTo(self.view.height);
                 //  2. 重新设置约束
-                make.left.right.bottom.mas_equalTo(self.view);
-                make.top.mas_equalTo(self.view.mas_bottom);
+                make.left.right.bottom.mas_equalTo(vc.view);
+                make.top.mas_equalTo(vc.view.mas_bottom);
             }];
         }
     }
     
-    [self layoutViews:animate animationsCompleted:complete];
+    [self layoutViewController:vc animate:animate animationsCompleted:complete];
 }
 
-- (void)layoutViews:(BOOL)animate animationsCompleted:(void(^)(void))complete {
+- (void)layoutViewController:(UIViewController *)viewController animate:(BOOL)animate animationsCompleted:(void(^)(void))complete {
     // tell constraints they need updating
-    [self.view setNeedsUpdateConstraints];
+    [viewController.view setNeedsUpdateConstraints];
     
     // update constraints now so we can animate the change
-    [self.view updateConstraintsIfNeeded];
+    [viewController.view updateConstraintsIfNeeded];
     
     if (animate) {
         [UIView animateWithDuration:0.25 animations:^{
-            [self.view layoutIfNeeded];
+            [viewController.view layoutIfNeeded];
         } completion:^(BOOL finished) {
             if (complete) {
                 complete();
             }
         }];
     } else {
-        [self.view layoutIfNeeded];
+        [viewController.view layoutIfNeeded];
         if (complete) {
             complete();
         }

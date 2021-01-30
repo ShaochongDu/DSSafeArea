@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray<NSString *> *dataArray;
 
+/// 点击回调
+@property (nonatomic, copy) void(^selectIndexBlock)(NSIndexPath *);
+
 /// 展示
 - (void)show;
 

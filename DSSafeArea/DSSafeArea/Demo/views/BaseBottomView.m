@@ -9,8 +9,8 @@
 
 @interface BaseBottomView ()
 
-/// 遮罩视图，若视图做了圆角设置，则可设置为yes，防止非x系列手机底部包含圆角
-@property (nonatomic, strong) UIView *maskView;
+/// 底部view 用来填充铺满底部空白，可设置颜色以达到配色效果
+@property (nonatomic, strong) UIView *maskBottomView;
 
 @end
 
@@ -24,6 +24,7 @@
         
 //        self.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
 //        self.contentView.backgroundColor = UIColor.whiteColor;
+//        self.maskBottomView.backgroundColor = RandomColor;
         
 //        self.backgroundColor = [self randomColor];
     }
@@ -33,11 +34,18 @@
 - (void)setupBaseBottomViews {
     self.contentView = [UIView new];
     [self addSubview:self.contentView];
+    
+    self.maskBottomView = [UIView new];
+    [self addSubview:self.maskBottomView];
 }
 
 - (void)setupBaseBottomViewConstraints {
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self);
+    }];
+    [self.maskBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.contentView.mas_bottom);
+        make.left.right.bottom.mas_equalTo(self);
     }];
 }
 
@@ -45,6 +53,10 @@
     [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(contentViewHeight);
     }];
+}
+
+-(void)setMaskBottomViewColor:(UIColor *)maskBottomViewColor {
+    self.maskBottomView.backgroundColor = maskBottomViewColor;
 }
 
 - (UIColor *)randomColor {

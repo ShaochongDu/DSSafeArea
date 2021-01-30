@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 添加的视图一定要加载该视图上
 @property (nonatomic, strong) UIView *contentView;
 
+/// 底部填充视图颜色
+@property (nonatomic, strong) UIColor *maskBottomViewColor;
+
 /// 底部视图内操作视图的高度
 /// 一定要设置，需要更新约束
 @property (nonatomic, assign) CGFloat contentViewHeight;

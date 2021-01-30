@@ -258,6 +258,17 @@
                                     <action selector="datePickerAction:" destination="jEX-jr-e39" eventType="touchUpInside" id="4fi-Sb-JXC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebp-34-J15">
+                                <rect key="frame" x="65" y="380" width="284" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <state key="normal" title="popTableVIew">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="popTableView:" destination="jEX-jr-e39" eventType="touchUpInside" id="gad-D1-D0R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vHK-N4-jJF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

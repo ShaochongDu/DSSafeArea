@@ -35,7 +35,7 @@
 - (void)setupViews {
     self.topView = [UIView new];
     self.topView.backgroundColor = [UIColor blackColor];
-    self.topView.alpha = 0.5;
+    self.topView.alpha = 0;
     [self.view addSubview:self.topView];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
@@ -78,7 +78,18 @@
         self.pickerView.pickerSetting = settting;
     }
     
-    [self showPickView:YES animate:YES completed:nil];
+//    [self showPickView:YES animate:YES completed:nil];
+    [self showBottomView:YES
+              bottomView:self.pickerView
+              controller:window.rootViewController
+           contentHeight:296
+               tableView:self.topView
+                 animate:YES
+     animationsCompleted:nil];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.topView.alpha = 0.5;
+    }];
 }
 
 /// 展示pickerview

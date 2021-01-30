@@ -39,8 +39,12 @@
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        //  控制整体背景，防止圆角无法显示
         self.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
         self.contentView.backgroundColor = UIColor.whiteColor;
+        //  控制底部填充视图颜色，防止颜色不统一
+        self.maskBottomViewColor = UIColor.whiteColor;
+        
         [self setupViews];
         [self setupConstraints];
     }
