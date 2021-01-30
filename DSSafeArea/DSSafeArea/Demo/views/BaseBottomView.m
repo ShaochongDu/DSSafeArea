@@ -22,6 +22,9 @@
         [self setupBaseBottomViews];
         [self setupBaseBottomViewConstraints];
         
+//        self.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
+//        self.contentView.backgroundColor = UIColor.whiteColor;
+        
 //        self.backgroundColor = [self randomColor];
     }
     return self;

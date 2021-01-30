@@ -200,6 +200,7 @@
     if (animate) {
         [UIView animateWithDuration:0.25 animations:^{
             [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
             if (complete) {
                 complete();
             }
