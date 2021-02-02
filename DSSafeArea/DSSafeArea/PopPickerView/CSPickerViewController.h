@@ -7,23 +7,30 @@
 //
 
 //    NSArray *dataArray = @[];
-//    CSPickerViewController *vc = [CSPickerViewController new];
-//    vc.selectDoneBlock = ^(NSInteger index) {
-//        NSLog(@"----%@", dataArray[index]);
-//    };
-//    vc.dataArray = dataArray;
-//    [vc show];
+//    CSPopPickerSetting *setting = [CSPopPickerSetting new];
+//    setting.pickerViewHeight = 300;
+//    setting.selectRow = 1;
+//    CSToolBarSetting *barSetting = [CSToolBarSetting new];
+//    barSetting.leftTitle = @"cancel";
+//    barSetting.leftColor = RandomColor;
+//    barSetting.title = @"标题";
+//    barSetting.titleColor = RandomColor;
+//    barSetting.rightTitle = @"done";
+//    barSetting.rightColor = RandomColor;
+//    setting.barSetting = barSetting;
+//    [popVC showWithSetting:setting];
 
-//        HTPickerSetting *setting = [HTPickerSetting new];
-//        setting.pickerViewHeight = 300;
-//        setting.selectRow = 1;
-//        setting.leftTitle = @"cancel";
-//        setting.leftColor = RandomColor;
-//        setting.title = @"标题";
-//        setting.titleColor = RandomColor;
-//        setting.rightTitle = @"done";
-//        setting.rightColor = RandomColor;
-//        [vc showWithSetting:setting];
+#import "CSToolView.h"
+
+@interface CSPopPickerSetting : NSObject
+
+@property (nonatomic, assign) CGFloat pickerViewHeight;// 高度：默认296
+
+@property (nonatomic, assign) NSInteger selectRow;  //  默认选中
+
+@property (nonatomic, strong) CSToolBarSetting *barSetting;
+
+@end
 
 #import <UIKit/UIKit.h>
 #import "CSPickerView.h"
@@ -40,7 +47,7 @@
 
 /// 设置配置 展示
 /// @param settting 配置信息
-- (void)showWithSetting:(CSPickerSetting *)settting;
+- (void)showWithSetting:(CSPopPickerSetting *)settting;
 
 @end
 

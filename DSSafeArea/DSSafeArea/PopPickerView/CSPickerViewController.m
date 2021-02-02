@@ -10,13 +10,23 @@
 #import "CSPickerView.h"
 #import "UIViewController+ConstraintBottomView.h"
 
+@implementation CSPopPickerSetting
+
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        _pickerViewHeight = 296;
+        _selectRow = 0;
+    }
+    return self;
+}
+
+@end
+
 @interface CSPickerViewController ()<UIPickerViewDelegate, UIPickerViewDataSource, CSPickerViewProtocol>
 
 @property (nonatomic, strong) UIView *topView;  //  上半区视图
 @property (nonatomic, strong) CSPickerView *pickerView; //  自定义时间选择器
-
-@property (nonatomic, assign) CGFloat pickerViewHeight;// 高度：默认296
-
 @property (nonatomic, assign) NSInteger selectIndex;    //  选择的索引
 
 @end
@@ -27,7 +37,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.selectIndex = 0;
-    self.pickerViewHeight = 296;
     
     [self setupViews];
 }
@@ -48,8 +57,12 @@
     [self.view addSubview:self.pickerView];
     
     [self showPickView:NO animate:NO completed:nil];
-    self.pickerView.contentViewHeight = self.pickerViewHeight;
+    self.pickerView.contentViewHeight = [self getPickerViewHeight];
     self.pickerView.cornerRadii = CGSizeMake(6, 6);
+}
+
+- (CGFloat)getPickerViewHeight {
+    return self.pickerView.pickerSetting.pickerViewHeight ?: 296;
 }
 
 #pragma mark - UITapGestureRecognizer
@@ -64,28 +77,21 @@
     [self showWithSetting:nil];
 }
 
-- (void)showWithSetting:(CSPickerSetting *)settting {
-    if (settting) {
-        self.pickerViewHeight = settting.pickerViewHeight;
-    }
+- (void)showWithSetting:(CSPopPickerSetting *)settting {
+    self.pickerView.pickerSetting = settting;
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window.rootViewController addChildViewController:self];
     [window.rootViewController.view addSubview:self.view];
     
-    if (settting) {
-        //  需等pickerView创建后赋值
-        self.pickerView.pickerSetting = settting;
-    }
+    //  需等pickerView创建后赋值，设置toolbar
+    self.pickerView.pickerSetting = settting;
     
-//    [self showPickView:YES animate:YES completed:nil];
-    [self showBottomView:YES
-              bottomView:self.pickerView
-              controller:window.rootViewController
-           contentHeight:296
-               tableView:self.topView
-                 animate:YES
-     animationsCompleted:nil];
+    [window.rootViewController showBottomView:YES
+                                   bottomView:self.pickerView
+                                contentHeight:[self getPickerViewHeight]
+                                    tableView:self.topView
+                                      animate:YES];
     
     [UIView animateWithDuration:0.25 animations:^{
         self.topView.alpha = 0.5;
@@ -98,7 +104,7 @@
 - (void)showPickView:(BOOL)show animate:(BOOL)animate completed:(void(^)(void))complete {
     [self showBottomView:show
               bottomView:self.pickerView
-           contentHeight:self.pickerViewHeight
+           contentHeight:[self getPickerViewHeight]
                tableView:self.topView
                  animate:animate
      animationsCompleted:complete];
@@ -106,14 +112,14 @@
 
 #pragma mark - HTPickerViewToolBarProtocol
 
-- (void)clickDoneBtn:(UIButton *)btn {
+- (void)pickerToolViewDone:(UIButton *)btn {
     [self dissmissSelf];
     if (self.selectDoneBlock) {
         self.selectDoneBlock(self.selectIndex);
     }
 }
 
-- (void)clickCancelBtn:(UIButton *)btn {
+- (void)pickerToolViewCancel:(UIButton *)btn {
     [self dissmissSelf];
 }
 

@@ -55,22 +55,25 @@
         [sender setTitle:stage forState:UIControlStateNormal];
     };
     popVC.dataArray = dataArray;
-    [popVC show];
-//
-//    CSPickerSetting *setting = [CSPickerSetting new];
+//    [popVC show];
+
+    CSPopPickerSetting *setting = [CSPopPickerSetting new];
 //    setting.pickerViewHeight = 300;
-//    setting.selectRow = 1;
-//    setting.leftTitle = @"cancel";
-//    setting.leftColor = RandomColor;
-//    setting.title = @"标题";
-//    setting.titleColor = RandomColor;
-//    setting.rightTitle = @"done";
-//    setting.rightColor = RandomColor;
-//    [popVC showWithSetting:setting];    
+    setting.selectRow = 3;
+    CSToolBarSetting *barSetting = [CSToolBarSetting new];
+    barSetting.leftTitle = @"cancel";
+    barSetting.leftColor = RandomColor;
+    barSetting.title = @"标题";
+    barSetting.titleColor = RandomColor;
+    barSetting.rightTitle = @"done";
+    barSetting.rightColor = RandomColor;
+    setting.barSetting = barSetting;
+    [popVC showWithSetting:setting];
 }
 
 - (IBAction)popTableView:(UIButton *)sender {
-    NSArray *dataArray = @[@"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"领导",@"老板",@"CEO"];
+    NSArray *dataArray = @[@"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"领导",@"老板",@"CEO",
+                           @"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"领导",@"老板",@"CEO"];
     CSPopTableViewController *popVC = [CSPopTableViewController new];
     popVC.dataArray = dataArray;
     popVC.selectIndexBlock = ^(NSIndexPath * indexPath) {
@@ -78,9 +81,29 @@
         NSLog(@"index--%@----%@",indexPath, stage);
         [sender setTitle:stage forState:UIControlStateNormal];
     };
-    [popVC show];
-//    popVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:popVC animated:YES];
+//    [popVC show];
+    
+    CSPopTableSetting *setting = [CSPopTableSetting new];
+//    setting.toolBarStyle = CSToolBarHeaderView;
+//    setting.headerTitle = @"请选择";
+    
+//    setting.heightStyle = CSTableFixedRatio;
+//    setting.fixRatio = 0.8;
+    
+    setting.heightStyle = CSTableDynamicRatio;
+    setting.fixRatio = 0.6;
+    
+    setting.toolBarStyle = CSToolBarCustomerView;
+    CSToolBarSetting *barSetting = [CSToolBarSetting new];
+    barSetting.leftTitle = @"cancel";
+    barSetting.leftColor = RandomColor;
+    barSetting.title = @"标题";
+    barSetting.titleColor = RandomColor;
+    barSetting.rightTitle = @"done";
+    barSetting.rightColor = RandomColor;
+    setting.barSetting = barSetting;
+    
+    [popVC showWithSetting:setting];
 }
 
 /*

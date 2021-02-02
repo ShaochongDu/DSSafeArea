@@ -6,8 +6,12 @@
 //
 
 #import "CSTableView.h"
+#import "CSPopTableViewController.h"
+#import "CSToolView.h"
 
 @interface CSTableView ()
+
+@property (nonatomic, strong) CSToolView *toolView;
 
 @end
 
@@ -54,6 +58,48 @@
 //        _tableView.bounces = NO;
     }
     return _tableView;
+}
+
+-(void)setTableSetting:(CSPopTableSetting *)tableSetting {
+    _tableSetting = tableSetting;
+    
+    self.toolView.toolBarSetting = tableSetting.barSetting;
+}
+
+- (void)setToolBar {
+    self.toolView = [CSToolView new];
+    [self.contentView addSubview:self.toolView];
+    
+    __weak typeof(self) weakSelf = self;
+    self.toolView.cancelBlock = ^(UIButton * btn) {
+        [weakSelf cancelAction:btn];
+    };
+    self.toolView.doneBlock = ^(UIButton * btn) {
+        [weakSelf doneAction:btn];
+    };
+    
+    [self.toolView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(self.contentView);
+        make.height.mas_equalTo(44);
+    }];
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.toolView.mas_bottom);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
+}
+
+#pragma mark - action
+
+- (void)cancelAction:(UIButton *)btn {
+    if ([self.delegate respondsToSelector:@selector(tableToolViewCancel:)]) {
+        [self.delegate tableToolViewCancel:btn];
+    }
+}
+
+- (void)doneAction:(UIButton *)btn {
+    if ([self.delegate respondsToSelector:@selector(tableToolViewDone:)]) {
+        [self.delegate tableToolViewDone:btn];
+    }
 }
 
 /*

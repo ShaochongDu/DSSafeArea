@@ -7,29 +7,12 @@
 //
 
 #import "BaseBottomView.h"
-
-@interface CSPickerSetting : NSObject
-
-@property (nonatomic, assign) CGFloat pickerViewHeight;// 高度：默认296
-
-@property (nonatomic, assign) NSInteger selectRow;  //  默认选中
-
-@property (nonatomic, copy) NSString *leftTitle; // 左侧标题
-@property (nonatomic, strong) UIColor *leftColor;
-
-@property (nonatomic, copy) NSString *title;    //  标题
-@property (nonatomic, strong) UIColor *titleColor;
-
-@property (nonatomic, copy) NSString *rightTitle;   // 右侧标题
-@property (nonatomic, strong) UIColor *rightColor;
-
-@end
-
+@class CSPopPickerSetting;
 
 @protocol CSPickerViewProtocol <NSObject>
 
-- (void)clickCancelBtn:(UIButton *)btn;
-- (void)clickDoneBtn:(UIButton *)btn;
+- (void)pickerToolViewCancel:(UIButton *)btn;
+- (void)pickerToolViewDone:(UIButton *)btn;
 
 @end
 
@@ -41,7 +24,7 @@
 
 @property (nonatomic, strong) UIPickerView *picker;
 
-@property (nonatomic, strong) CSPickerSetting *pickerSetting;
+@property (nonatomic, strong) CSPopPickerSetting *pickerSetting;
 
 @end
 
