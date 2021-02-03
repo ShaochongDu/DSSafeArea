@@ -27,7 +27,9 @@
 
 @property (nonatomic, strong) UIView *topView;  //  上半区视图
 @property (nonatomic, strong) CSPickerView *pickerView; //  自定义时间选择器
-@property (nonatomic, assign) NSInteger selectIndex;    //  选择的索引
+@property (nonatomic, strong) NSIndexPath *selectIndexPath; //  选择的索引
+
+@property (nonatomic, assign) NSInteger selectRow;// 二维数组，选择的第一列数据
 
 @end
 
@@ -36,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.selectIndex = 0;
+    self.selectRow = 0;
     
     [self setupViews];
 }
@@ -115,7 +117,7 @@
 - (void)pickerToolViewDone:(UIButton *)btn {
     [self dissmissSelf];
     if (self.selectDoneBlock) {
-        self.selectDoneBlock(self.selectIndex);
+        self.selectDoneBlock(self.selectIndexPath);
     }
 }
 
@@ -134,21 +136,54 @@
 #pragma mark - UIPickerViewDataSource
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
+    if (self.dataDic) {
+        return self.dataArray.count;
+    } else {
+        return 1;
+    }
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.dataArray.count;
+    if (self.dataDic) {
+        if (component == 0) {
+            return self.dataArray.count;
+        } else {
+            NSString *key = self.dataArray[self.selectRow];
+            NSArray *dataArray = self.dataDic[key];
+            return dataArray.count;
+        }
+    } else {
+        return self.dataArray.count;
+    }
 }
 
 #pragma mark - UIPickerViewDelegate
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.dataArray[row];
+    if (self.dataDic) {
+        if (component == 0) {
+            return self.dataArray[row];
+        } else {
+            NSString *key = self.dataArray[self.selectRow];
+            NSArray *dataArray = self.dataDic[key];
+            return dataArray[row];
+        }
+    } else {
+        return self.dataArray[row];
+    }
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.selectIndex = row;
+    if (self.dataDic) {
+        if (component == 0) {
+            self.selectRow = row;
+            [pickerView reloadComponent:1];
+            [pickerView selectRow:0 inComponent:1 animated:YES];
+        }
+        self.selectIndexPath = [NSIndexPath indexPathForRow:row inSection:self.selectRow];
+    } else {
+        self.selectIndexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    }
 }
 
 

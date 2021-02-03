@@ -47,28 +47,49 @@
     }
 }
 - (IBAction)datePickerAction:(UIButton *)sender {
-    NSArray *dataArray = @[@"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"领导",@"老板",@"CEO"];
     CSPickerViewController *popVC = [CSPickerViewController new];
-    popVC.selectDoneBlock = ^(NSInteger index) {
-        NSString *stage = dataArray[index];
-        NSLog(@"index--%ld----%@",index, stage);
+    // 一维数组
+    NSArray *dataArray = @[@"幼儿园",@"小学",@"中学",@"高中",@"大学",@"社会",@"领导",@"老板",@"CEO"];
+    popVC.selectDoneBlock = ^(NSIndexPath *indexPath) {
+        NSString *stage = dataArray[indexPath.row];
+        NSLog(@"index--%ld----%@",indexPath.row, stage);
         [sender setTitle:stage forState:UIControlStateNormal];
     };
     popVC.dataArray = dataArray;
-//    [popVC show];
+    
+    [popVC show];
+    
+//    CSPopPickerSetting *setting = [CSPopPickerSetting new];
+////    setting.pickerViewHeight = 300;
+//    setting.selectRow = 3;
+//    CSToolBarSetting *barSetting = [CSToolBarSetting new];
+//    barSetting.leftTitle = @"cancel";
+//    barSetting.leftColor = RandomColor;
+//    barSetting.title = @"标题";
+//    barSetting.titleColor = RandomColor;
+//    barSetting.rightTitle = @"done";
+//    barSetting.rightColor = RandomColor;
+//    setting.barSetting = barSetting;
+//    [popVC showWithSetting:setting];
+}
 
-    CSPopPickerSetting *setting = [CSPopPickerSetting new];
-//    setting.pickerViewHeight = 300;
-    setting.selectRow = 3;
-    CSToolBarSetting *barSetting = [CSToolBarSetting new];
-    barSetting.leftTitle = @"cancel";
-    barSetting.leftColor = RandomColor;
-    barSetting.title = @"标题";
-    barSetting.titleColor = RandomColor;
-    barSetting.rightTitle = @"done";
-    barSetting.rightColor = RandomColor;
-    setting.barSetting = barSetting;
-    [popVC showWithSetting:setting];
+- (IBAction)pickerViewTwo:(id)sender {
+    CSPickerViewController *popVC = [CSPickerViewController new];
+    //  二维数组
+    NSArray *dataArray = @[@"中国",@"日本"];
+    NSDictionary *dataDic = @{@"中国": @[@"北京",@"天津",@"上海",@"重庆"],
+                              @"日本": @[@"东京",@"大阪",@"横浜",@"名古屋"]
+                          };
+    popVC.dataArray = dataArray;
+    popVC.dataDic = dataDic;
+    popVC.selectDoneBlock = ^(NSIndexPath *indexPath) {
+        NSString *country = dataArray[indexPath.section];
+        NSString *city = dataDic[country][indexPath.row];
+        NSLog(@"indexPath--%@ -----%@-%@",indexPath, country, city);
+        [sender setTitle:[NSString stringWithFormat:@"%@-%@",country, city] forState:UIControlStateNormal];
+    };
+    
+    [popVC show];
 }
 
 - (IBAction)popTableView:(UIButton *)sender {

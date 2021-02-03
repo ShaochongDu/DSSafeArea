@@ -111,6 +111,9 @@
 #pragma mark - interface
 
 -(void)setToolBarSetting:(CSToolBarSetting *)toolBarSetting {
+    if (!toolBarSetting) {
+        return;
+    }
     _toolBarSetting = toolBarSetting;
     
     if (toolBarSetting.leftTitle) {

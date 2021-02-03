@@ -38,9 +38,10 @@
 /// 选择器展示
 @interface CSPickerViewController : UIViewController
 
-@property (nonatomic, strong) NSArray<NSString *> *dataArray;   //  数据源
+@property (nonatomic, strong) NSArray *dataArray;   //  一维数组或二维数组key顺序
+@property (nonatomic, strong) NSDictionary *dataDic;   //  二维数组，必须有dataArray判断顺序
 
-@property (nonatomic, copy) void(^selectDoneBlock)(NSInteger);  //  选择完成索引
+@property (nonatomic, copy) void(^selectDoneBlock)(NSIndexPath*);  //  选择完成索引
 
 /// 展示
 - (void)show;
